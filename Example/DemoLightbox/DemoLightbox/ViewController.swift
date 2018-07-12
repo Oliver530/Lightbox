@@ -1,8 +1,8 @@
 import UIKit
 import Lightbox
 
-class ViewController: UIViewController {
-  
+class ViewController: UIViewController, LightboxControllerDeleteDelegate {
+
   lazy var showButton: UIButton = { [unowned self] in
     let button = UIButton()
     button.addTarget(self, action: #selector(showLightbox), for: .touchUpInside)
@@ -43,10 +43,19 @@ class ViewController: UIViewController {
       )
     ]
     
+    LightboxConfig.DeleteButton.enabled = true
+
     let controller = LightboxController(images: images)
     controller.dynamicBackground = true
-    
+    controller.imageDeleteDelegate = self
+
     present(controller, animated: true, completion: nil)
   }
+
+
+  func lightboxController(_ controller: LightboxController, didDeleteImageAt index: Int) {
+    print("did Delete Image at index: \(index)")
+  }
+
 }
 

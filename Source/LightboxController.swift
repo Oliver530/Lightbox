@@ -255,19 +255,21 @@ open class LightboxController: UIViewController {
     let preloadIndicies = calculatePreloadIndicies()
     
     for i in 0..<initialImages.count {
-      let pageView = pageViews[i]
-      if preloadIndicies.contains(i) {
-        if type(of: pageView.image) == LightboxImageStub.self {
-          pageView.update(with: initialImages[i])
-        }
-      } else {
-        if type(of: pageView.image) != LightboxImageStub.self {
-          pageView.update(with: LightboxImageStub())
+      if i <= pageViews.count-1 {
+        let pageView = pageViews[i]
+        if preloadIndicies.contains(i) {
+          if type(of: pageView.image) == LightboxImageStub.self {
+            pageView.update(with: initialImages[i])
+          }
+        } else {
+          if type(of: pageView.image) != LightboxImageStub.self {
+            pageView.update(with: LightboxImageStub())
+          }
         }
       }
     }
   }
-
+  
   // MARK: - Pagination
 
   open func goTo(_ page: Int, animated: Bool = true) {
