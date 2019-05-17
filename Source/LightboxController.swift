@@ -428,7 +428,7 @@ extension LightboxController: PageViewDelegate {
 extension LightboxController: HeaderViewDelegate {
 
   func headerView(_ headerView: HeaderView, didPressDeleteButton deleteButton: UIButton) {
-    let alert = UIAlertController(title: "Delete Image", message: "Would you like to delete the selected image?", preferredStyle: .alert)
+    let alert = UIAlertController(title: NSLocalizedString("Delete image", comment: "Lightbox Alert controller"), message: NSLocalizedString("Would you like to delete the selected image?", comment: "Lightbox Alert controller"), preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Default action"), style: .`default`, handler: { _ in NSLog("The \"OK\" alert occured.")}))
     alert.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: "Confirm delete"), style: .`default`, handler: { _ in
         deleteButton.isEnabled = false
